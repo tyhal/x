@@ -1,0 +1,21 @@
+queue_rules:
+  - name: default
+    queue_conditions:
+      - status-success=x-test
+      - status-success=SonarCloud Code Analysis
+      - status-success=GitGuardian Security Checks
+pull_request_rules:
+  - name: automatic merge for Dependabot pull requests
+    conditions:
+      - base=main
+      - author~=^dependabot(|-preview)\[bot\]$
+    actions:
+      queue:
+        name: default
+  - name: automatic merge for Renovate pull requests
+    conditions:
+      - base=main
+      - author=renovate[bot]
+    actions:
+      queue:
+        name: default
