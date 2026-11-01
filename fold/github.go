@@ -14,12 +14,9 @@ func NewGithub(w io.Writer) Folder {
 	return &githubFolder{w}
 }
 
-func (g githubFolder) Start(file string, msg string, _ bool) (string, error) {
-	_, err := fmt.Fprintf(g, "::error file=%s::%s\n", file, file)
-	if err != nil {
-		return "", err
-	}
-	_, err = fmt.Fprintf(g, "::group::%s see logs\n", msg)
+// Start only groups, annotating a file (::error file=...) is left to whatever knows its path and position
+func (g githubFolder) Start(title string, msg string, _ bool) (string, error) {
+	_, err := fmt.Fprintf(g, "::group::%s %s\n", msg, title)
 	return "", err
 }
 

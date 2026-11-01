@@ -16,7 +16,7 @@ func NewGitlab(w io.Writer) Folder {
 	return &gitlabFolder{w}
 }
 
-func (g gitlabFolder) Start(file, msg string, open bool) (string, error) {
+func (g gitlabFolder) Start(title, msg string, open bool) (string, error) {
 	id := fmt.Sprintf("%08x\n", rand.Int31())
 	collapsed := "true"
 	if open {
@@ -27,7 +27,7 @@ func (g gitlabFolder) Start(file, msg string, open bool) (string, error) {
 		id,
 		collapsed,
 		msg,
-		file)
+		title)
 	if err != nil {
 		return "", err
 	}

@@ -8,7 +8,8 @@ import (
 
 // Folder represents a CI environment that supports folding / collapsing log messages
 type Folder interface {
-	Start(file string, msg string, open bool) (string, error)
+	// Start begins a fold labelled with msg and title, open sets if it starts expanded where that's supported
+	Start(title string, msg string, open bool) (string, error)
 	Stop(id string) error
 }
 

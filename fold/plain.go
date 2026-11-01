@@ -14,8 +14,8 @@ func NewPlain(w io.Writer) Folder {
 	return &plainFolder{w}
 }
 
-func (p plainFolder) Start(file, msg string, _ bool) (string, error) {
-	_, err := fmt.Fprintf(p, "%s %v\n", msg, file)
+func (p plainFolder) Start(title, msg string, _ bool) (string, error) {
+	_, err := fmt.Fprintf(p, "%s %v\n", msg, title)
 	if err != nil {
 		return "", err
 	}
